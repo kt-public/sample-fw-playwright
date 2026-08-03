@@ -8,7 +8,8 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:spec": "playwright test --headed",
-    "report": "playwright show-report",
+    "report:html": "playwright show-report ./reports/playwright-report",
+    "report:allure": "allure generate -o ./reports/allure-report ./reports/allure-results --open",
     "test:sample": "playwright test --grep=\"@login\" --project=chrome --headed"
   },
   "repository": {
@@ -25,7 +26,9 @@
   "homepage": "https://github.com/kt-public/sample-fw-playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "@types/node": "^26.1.2"
+    "@types/node": "^26.1.2",
+    "allure": "^3.14.3",
+    "allure-playwright": "^3.10.2"
   },
   "dependencies": {
     "allure-js-commons": "^3.10.2"
