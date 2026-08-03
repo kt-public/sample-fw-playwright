@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.eol": "\n",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "never"
+    },
+    "path-intellisense.showHiddenFiles": true,
+    "cSpell.words": [
+      "SUPABASE"
+    ],
+  }
+}
