@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from "@playwright/test";
+import test, { expect, type Locator, type Page } from "@playwright/test";
 
 export class BasePage {
     readonly page: Page;
@@ -6,7 +6,8 @@ export class BasePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.baseUrl = "https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net"
+        // get baseURL from playwright.config.ts
+        this.baseUrl = test.info().project.use.baseURL ?? "";
     }
 
     async openUrl(path: string = "") {
