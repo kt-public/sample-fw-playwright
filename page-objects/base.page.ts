@@ -2,9 +2,11 @@ import { expect, type Locator, type Page } from "@playwright/test";
 
 export class BasePage {
     readonly page: Page;
+    readonly baseUrl: string
 
     constructor(page: Page) {
         this.page = page;
+        this.baseUrl = "https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net"
     }
 
     async openUrl(path: string = "") {

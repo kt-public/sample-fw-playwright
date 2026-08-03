@@ -9,7 +9,7 @@
     "test:ui": "playwright test --ui",
     "test:spec": "playwright test --headed",
     "report": "playwright show-report",
-    "verify:sample": "playwright test tests/example.spec.ts --project=msedge --headed"
+    "test:sample": "playwright test --grep=\"@login\" --project=chrome --headed"
   },
   "repository": {
     "type": "git",
