@@ -51,6 +51,14 @@ export class BasePage {
     return await this.page.waitForLoadState(loadState);
   }
 
+  async waitForAlert(triggerActionLocator: Locator) {
+    const [dialog] = await Promise.all([
+      this.page.waitForEvent("dialog"),
+      await triggerActionLocator.click(),
+    ]);
+    return dialog;
+  }
+
   async getText(locator: Locator) {
     const elementText = await locator.innerText();
     return elementText;
