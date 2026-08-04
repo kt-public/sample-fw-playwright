@@ -21,7 +21,7 @@ export class CartPage extends BasePage {
     await this.openUrl(this.path);
   }
 
-  async verifyNavigateToCartPage() {
+  async verifyOnCartPage() {
     await expect(this.page).toHaveURL(`${this.baseUrl}${this.path}`);
   }
 

@@ -24,13 +24,13 @@ export class LoginPage extends BasePage {
     await this.clickOnElement(this.loginBtn);
   }
 
-  async verifyNavigateToHomePage() {
+  async verifyOnHomePage() {
     await expect(this.page).toHaveURL(`${this.baseUrl}/home`);
   }
 
   async handleLoginSteps(userName: string, password: string) {
     await this.fillAccountInfos(userName, password);
     await this.login();
-    await this.verifyNavigateToHomePage();
+    await this.verifyOnHomePage();
   }
 }

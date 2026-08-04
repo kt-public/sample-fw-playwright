@@ -42,7 +42,7 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
 
     await allure.step("Open cart page", async () => {
       await cartPage.openPage();
-      await cartPage.verifyNavigateToCartPage();
+      await cartPage.verifyOnCartPage();
     });
 
     await allure.step(

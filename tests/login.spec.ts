@@ -25,7 +25,7 @@ test.describe("Login Tests", { tag: "@login" }, () => {
         page,
         async () => {
           await loginPage.login();
-          await loginPage.verifyNavigateToHomePage();
+          await loginPage.verifyOnHomePage();
         },
       );
     });
