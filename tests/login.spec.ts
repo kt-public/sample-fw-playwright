@@ -7,7 +7,7 @@ test.describe("Login Tests", { tag: "@login" }, () => {
   const { username, password } = accounts[0]
 
   test("Login successfully with valid username and password", async ({
-    page, loginPage,
+    page, loginPage, productPage
   }) => {
     await allure.step("Input login information", async () => {
       await ReportUtils.attachScreenshot(
@@ -25,7 +25,7 @@ test.describe("Login Tests", { tag: "@login" }, () => {
         page,
         async () => {
           await loginPage.login();
-          await loginPage.verifyOnHomePage();
+          await expect(productPage.page).toHaveURL(productPage.pageUrl);
         },
       );
     });

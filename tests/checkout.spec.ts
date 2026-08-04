@@ -7,7 +7,7 @@ test.describe("Checkout Tests", { tag: "@checkout" }, () => {
   const { username, password } = accounts[1];
   const { name, phone, address } = receivers[0];
 
-  test.beforeEach(async ({ loginApi, cartApi, loginPage }) => {
+  test.beforeEach(async ({ loginApi, cartApi, loginPage, productPage }) => {
     await allure.step("Execute api to clean up cart", async () => {
       const token = await loginApi.getAuthToken(username, password);
       await cartApi.clearCart(token);
@@ -15,6 +15,7 @@ test.describe("Checkout Tests", { tag: "@checkout" }, () => {
 
     await allure.step("Login into app", async () => {
       await loginPage.handleLoginSteps(username, password);
+      await expect(productPage.page).toHaveURL(productPage.pageUrl);
     });
   });
 
@@ -25,7 +26,8 @@ test.describe("Checkout Tests", { tag: "@checkout" }, () => {
       const paymentMethod = "cash";
 
       await allure.step("Add first product into cart", async () => {
-        await productPage.addFirstProductToCartSteps();
+        const result = await productPage.addFirstProductToCartSteps();
+        expect(result).toBe(true);
       });
 
       await allure.step("Go to cart page", async () => {

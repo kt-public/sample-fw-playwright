@@ -5,7 +5,7 @@ import accounts from "@/data/accounts.json";
 test.describe("Cart Tests", { tag: "@cart" }, () => {
   const { username, password } = accounts[1];
 
-  test.beforeEach(async ({ loginApi, cartApi, loginPage }) => {
+  test.beforeEach(async ({ loginApi, cartApi, loginPage, productPage }) => {
     await allure.step("Execute api to clean up cart", async () => {
       const token = await loginApi.getAuthToken(username, password);
       await cartApi.clearCart(token);
@@ -13,6 +13,7 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
 
     await allure.step("Login into app", async () => {
       await loginPage.handleLoginSteps(username, password);
+      await expect(productPage.page).toHaveURL(productPage.pageUrl);
     });
   });
 
@@ -45,7 +46,7 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
 
       await allure.step("Open cart page", async () => {
         await cartPage.openPage();
-        await cartPage.verifyOnCartPage();
+        await expect(cartPage.page).toHaveURL(cartPage.pageUrl);
       });
 
       await allure.step(

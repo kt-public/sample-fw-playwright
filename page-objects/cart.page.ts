@@ -1,8 +1,9 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class CartPage extends BasePage {
   readonly path: string;
+  readonly pageUrl: string;
   private readonly cartItems: Locator;
   private readonly cartItem: Locator;
   private readonly cartSummary: Locator;
@@ -12,6 +13,7 @@ export class CartPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.path = `/cart`;
+    this.pageUrl = `${this.baseUrl}${this.path}`;
     this.cartItems = this.page.locator(".cart-items");
     this.cartItem = this.cartItems.locator(".cart-item");
     this.cartSummary = this.page.locator(".cart-summary");
@@ -21,10 +23,6 @@ export class CartPage extends BasePage {
 
   async openPage() {
     await this.openUrl(this.path);
-  }
-
-  async verifyOnCartPage() {
-    await expect(this.page).toHaveURL(`${this.baseUrl}${this.path}`);
   }
 
   async countCartItem() {
