@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npm run playwright:install --with-deps chromium
 
       - name: Run Playwright tests
         run: npm run test:all

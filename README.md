@@ -32,7 +32,7 @@ Project contains Playwright FW exercises
 
    - Show allure report
    ```bash
-   npm run report:allure
+   npm run report:allure:open
    ```
 
 ## Test cases
