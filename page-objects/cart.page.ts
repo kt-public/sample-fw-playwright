@@ -7,6 +7,7 @@ export class CartPage extends BasePage {
   private readonly cartItem: Locator;
   private readonly cartSummary: Locator;
   private readonly summaryTotal: Locator;
+  private readonly checkoutBtn: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -15,6 +16,7 @@ export class CartPage extends BasePage {
     this.cartItem = this.cartItems.locator(".cart-item");
     this.cartSummary = this.page.locator(".cart-summary");
     this.summaryTotal = this.cartSummary.locator(".summary-total span").last();
+    this.checkoutBtn = this.cartSummary.locator(".checkout-btn")
   }
 
   async openPage() {
@@ -31,5 +33,9 @@ export class CartPage extends BasePage {
 
   async getSummaryTotalStr() {
     return await this.summaryTotal.textContent();
+  }
+
+  async clickOnCheckoutBtn() {
+    await this.clickOnElement(this.checkoutBtn);
   }
 }

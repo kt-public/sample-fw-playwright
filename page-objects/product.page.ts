@@ -43,4 +43,15 @@ export class ProductPage extends BasePage {
   async getFirstProductPriceStr() {
     return await this.getProductPriceElement(this.productCard.first()).textContent();
   }
+
+  async clickOnHeaderCartBtn() {
+    await this.clickOnElement(this.headerCartBtn);
+  }
+
+  async addFirstProductToCartSteps() {
+    const cartBadgeQuantity = await this.getHeaderCartQuantity();
+    await this.addFirstProductToCart();
+    const afterCartBadgeQuantity = await this.getHeaderCartQuantity();
+    await expect(afterCartBadgeQuantity).toBe(cartBadgeQuantity + 1);
+  }
 }
