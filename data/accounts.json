@@ -1,10 +1,12 @@
 [
   {
     "username": "admin",
+    "name": "Admin User A",
     "password": "password123"
   },
   {
     "username": "custuser",
+    "name": "Customer User A",
     "password": "12345678"
   }
 ]

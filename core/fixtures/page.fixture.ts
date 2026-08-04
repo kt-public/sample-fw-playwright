@@ -7,6 +7,7 @@ import { CheckoutPage } from "@/page-objects/checkout.page";
 import { LoginApi } from "@/core/apis/login.api";
 import { ProfileApi } from "@/core/apis/profile.api";
 import { CartApi } from "@/core/apis/cart.api";
+import { ProfilePage } from "@/page-objects/profile.page";
 
 // Declare the types of your fixtures.
 type MyFixtures = {
@@ -15,6 +16,7 @@ type MyFixtures = {
   productPage: ProductPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  profilePage: ProfilePage;
 
   loginApi: LoginApi;
   profileApi: ProfileApi;
@@ -47,6 +49,12 @@ const test = base.extend<MyFixtures>({
   checkoutPage: async ({ page }, use) => {
     const checkoutPage = new CheckoutPage(page);
     await use(checkoutPage);
+  },
+  profilePage: async ({ page }, use) => {
+    const profilePage = new ProfilePage(page);
+
+    await profilePage.openUrl(profilePage.path);
+    await use(profilePage);
   },
 
   loginApi: async ({ request }, use) => {

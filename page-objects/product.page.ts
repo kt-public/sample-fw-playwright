@@ -5,16 +5,19 @@ export class ProductPage extends BasePage {
   readonly path: string = "/home";
   private readonly productCard: Locator;
   private readonly addProductBtn: Locator;
+  private readonly headerHome: Locator;
   private readonly headerCartBtn: Locator;
   private readonly headerCartBadge: Locator;
+  private readonly headerUsername: Locator;
 
   constructor(page: Page) {
     super(page);
     this.productCard = this.page.locator(".product-card");
     this.addProductBtn = this.productCard.locator("button.add-to-cart");
-    this.headerCartBtn = this.page.locator("button.cart-btn");
-    this.headerCartBadge = this.headerCartBtn
-      .locator(".cart-badge");
+    this.headerHome = this.page.locator(".home-header");
+    this.headerCartBtn = this.headerHome.locator("button.cart-btn");
+    this.headerCartBadge = this.headerCartBtn.locator(".cart-badge");
+    this.headerUsername = this.headerHome.getByTestId("header-username");
   }
 
   getAddProductBtnByName(productName: string) {
@@ -24,7 +27,7 @@ export class ProductPage extends BasePage {
   }
 
   getProductPriceElement(parentLocator: Locator) {
-    return parentLocator.locator(".product-price")
+    return parentLocator.locator(".product-price");
   }
 
   async addFirstProductToCart() {
@@ -34,18 +37,30 @@ export class ProductPage extends BasePage {
 
   async getHeaderCartQuantity() {
     let quantity = 0;
-    if (await this.headerCartBadge.count() > 0) {
+    if ((await this.headerCartBadge.count()) > 0) {
       quantity = Number(await this.headerCartBadge.textContent());
     }
     return isNaN(quantity) ? 0 : Number(quantity);
   }
 
   async getFirstProductPriceStr() {
-    return await this.getProductPriceElement(this.productCard.first()).textContent();
+    return await this.getProductPriceElement(
+      this.productCard.first(),
+    ).textContent();
   }
 
   async clickOnHeaderCartBtn() {
     await this.clickOnElement(this.headerCartBtn);
+  }
+
+  async isCorrectProfileNameOnHeader(name: string) {
+    return (await this.headerUsername
+      .locator(`//*[contains(text(), "${name}")]`)
+      .count()) === 1;
+  }
+
+  async verifyOnProductPage() {
+    await expect(this.page).toHaveURL(`${this.baseUrl}${this.path}`);
   }
 
   async addFirstProductToCartSteps() {
