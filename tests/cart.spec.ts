@@ -1,15 +1,11 @@
 import test, { expect } from "@/core/fixtures/page.fixture";
 import * as allure from "allure-js-commons";
 import accounts from "@/data/accounts.json";
-import { CartApi } from "@/core/apis/cart.api";
-import { LoginApi } from "@/core/apis/login.api";
 
 test.describe("Cart Tests", { tag: "@cart" }, () => {
   const { username, password } = accounts[1];
 
-  test.beforeEach(async ({ request, loginPage }) => {
-    const loginApi = new LoginApi(request);
-    const cartApi = new CartApi(request);
+  test.beforeEach(async ({ loginApi, cartApi, loginPage }) => {
     // execute api to clean up cart
     const token = await loginApi.getAuthToken(username, password);
     await cartApi.clearCart(token);

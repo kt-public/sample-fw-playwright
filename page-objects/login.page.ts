@@ -30,7 +30,7 @@ export class LoginPage extends BasePage {
 
   async handleLoginSteps(userName: string, password: string) {
     await this.fillAccountInfos(userName, password);
-    await this.login()
-    await this.verifyNavigateToHomePage()
+    await this.login();
+    await this.verifyNavigateToHomePage();
   }
 }
