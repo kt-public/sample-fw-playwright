@@ -1,11 +1,19 @@
 import test, { expect } from "@/core/fixtures/page.fixture";
 import * as allure from "allure-js-commons";
 import accounts from "@/data/accounts.json";
+import { CartApi } from "@/core/apis/cart.api";
+import { LoginApi } from "@/core/apis/login.api";
 
 test.describe("Cart Tests", { tag: "@cart" }, () => {
   const { username, password } = accounts[1];
 
-  test.beforeEach(async ({ loginPage }) => {
+  test.beforeEach(async ({ request, loginPage }) => {
+    const loginApi = new LoginApi(request);
+    const cartApi = new CartApi(request);
+    // execute api to clean up cart
+    const token = await loginApi.getAuthToken(username, password);
+    await cartApi.clearCart(token);
+    // login into app
     await loginPage.handleLoginSteps(username, password);
   });
 
@@ -31,8 +39,7 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
     await allure.step(
       "Verify the number of product (cart badge) is increased",
       async () => {
-        afterCartBadgeQuantity =
-          await productPage.getHeaderCartQuantity();
+        afterCartBadgeQuantity = await productPage.getHeaderCartQuantity();
         await expect(afterCartBadgeQuantity).toBe(cartBadgeQuantity + 1);
       },
     );
@@ -45,7 +52,9 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
     await allure.step(
       "Verify the number of cart item and total price",
       async () => {
-        await expect(await cartPage.countCartItem()).toBe(afterCartBadgeQuantity);
+        await expect(await cartPage.countCartItem()).toBe(
+          afterCartBadgeQuantity,
+        );
         await expect(await cartPage.getSummaryTotalStr()).toBe(productPriceStr);
       },
     );
