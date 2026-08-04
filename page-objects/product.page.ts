@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class ProductPage extends BasePage {
-  readonly path: string;
+  readonly path: string = "/home";
   private readonly productCard: Locator;
   private readonly addProductBtn: Locator;
   private readonly headerCartBtn: Locator;
@@ -10,7 +10,6 @@ export class ProductPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.path = `/home`;
     this.productCard = this.page.locator(".product-card");
     this.addProductBtn = this.productCard.locator("button.add-to-cart");
     this.headerCartBtn = this.page.locator("button.cart-btn");

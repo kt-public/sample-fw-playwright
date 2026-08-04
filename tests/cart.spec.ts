@@ -17,7 +17,7 @@ test.describe("Cart Tests", { tag: "@cart" }, () => {
     await loginPage.handleLoginSteps(username, password);
   });
 
-  test("Add single product into cart successfully", async ({
+  test("Ex2 - Add single product into cart successfully", { tag: "@ex2"}, async ({
     productPage,
     cartPage,
   }) => {
