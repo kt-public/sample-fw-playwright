@@ -2,10 +2,13 @@ import test, { expect, type Locator, type Page } from "@playwright/test";
 
 export class BasePage {
   readonly baseUrl: string;
+  readonly pageUrl: string;
 
-  constructor(readonly page: Page) {
+  constructor(readonly page: Page, readonly path: string) {
     // get baseURL from playwright.config.ts
     this.baseUrl = test.info().project.use.baseURL ?? "";
+
+    this.pageUrl = `${this.baseUrl}${this.path}`;
   }
 
   async openUrl(path: string = "") {

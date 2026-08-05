@@ -3,8 +3,6 @@ import { BasePage } from "./base.page";
 
 type PaymentMethod = "cash" | "card";
 export class CheckoutPage extends BasePage {
-  readonly path: string = "/checkout";
-  readonly pageUrl: string;
   private readonly checkoutForm: Locator;
   private readonly checkoutName: Locator;
   private readonly checkoutPhone: Locator;
@@ -15,8 +13,7 @@ export class CheckoutPage extends BasePage {
   private readonly checkoutSuccessIcon: Locator;
 
   constructor(page: Page) {
-    super(page);
-    this.pageUrl = `${this.baseUrl}${this.path}`;
+    super(page, "/checkout");
     this.checkoutForm = this.page.locator(".checkout-form");
     this.checkoutName = this.checkoutForm.getByTestId("checkout-name");
     this.checkoutPhone = this.checkoutForm.getByTestId("checkout-phone");

@@ -2,16 +2,13 @@ import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class ProfilePage extends BasePage {
-  readonly path: string = "/profile";
-  readonly pageUrl: string;
   private readonly profileForm: Locator;
   private readonly profileName: Locator;
   private readonly profileSaveBtn: Locator;
   private readonly profileUpdateSuccess: Locator;
 
   constructor(page: Page) {
-    super(page);
-    this.pageUrl = `${this.baseUrl}${this.path}`;
+    super(page, "/profile");
     this.profileForm = this.page.locator(".pf-form");
     this.profileName = this.profileForm.getByTestId("profile-name");
     this.profileSaveBtn = this.profileForm.getByTestId("profile-save");

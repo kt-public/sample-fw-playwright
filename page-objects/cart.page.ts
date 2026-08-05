@@ -2,8 +2,6 @@ import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class CartPage extends BasePage {
-  readonly path: string;
-  readonly pageUrl: string;
   private readonly cartItems: Locator;
   private readonly cartItem: Locator;
   private readonly cartSummary: Locator;
@@ -11,9 +9,7 @@ export class CartPage extends BasePage {
   private readonly checkoutBtn: Locator;
 
   constructor(page: Page) {
-    super(page);
-    this.path = `/cart`;
-    this.pageUrl = `${this.baseUrl}${this.path}`;
+    super(page, "/cart");
     this.cartItems = this.page.locator(".cart-items");
     this.cartItem = this.cartItems.locator(".cart-item");
     this.cartSummary = this.page.locator(".cart-summary");

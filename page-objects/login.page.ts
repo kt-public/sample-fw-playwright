@@ -2,15 +2,12 @@ import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class LoginPage extends BasePage {
-  readonly path: string = "/login";
-  readonly pageUrl: string;
   private readonly userName: Locator;
   private readonly password: Locator;
   private readonly loginBtn: Locator;
 
   constructor(page: Page) {
-    super(page);
-    this.pageUrl = `${this.baseUrl}${this.path}`;
+    super(page, "/login");
     this.userName = this.page.getByTestId("login-username");
     this.password = this.page.getByTestId("login-password");
     this.loginBtn = this.page.getByTestId("login-submit");

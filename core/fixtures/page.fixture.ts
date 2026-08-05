@@ -4,10 +4,11 @@ import { LoginPage } from "@/page-objects/login.page";
 import { ProductPage } from "@/page-objects/product.page";
 import { CartPage } from "@/page-objects/cart.page";
 import { CheckoutPage } from "@/page-objects/checkout.page";
-import { LoginApi } from "@/core/apis/login.api";
-import { ProfileApi } from "@/core/apis/profile.api";
-import { CartApi } from "@/core/apis/cart.api";
 import { ProfilePage } from "@/page-objects/profile.page";
+
+import { LoginApi } from "@/apis/login.api";
+import { ProfileApi } from "@/apis/profile.api";
+import { CartApi } from "@/apis/cart.api";
 
 // Declare the types of your fixtures.
 type MyFixtures = {

@@ -3,7 +3,7 @@ import { ReportUtils } from "@/core/utils/report.util";
 import * as allure from "allure-js-commons";
 import accounts from "@/data/accounts.json";
 
-test.describe("Login Tests", { tag: "@login" }, () => {
+test.describe("Login Page Tests", { tag: "@login" }, () => {
   const { username, password } = accounts[0]
 
   test("Login successfully with valid username and password", async ({

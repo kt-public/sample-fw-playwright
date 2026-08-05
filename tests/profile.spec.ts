@@ -2,7 +2,7 @@ import test, { expect } from "@/core/fixtures/page.fixture";
 import * as allure from "allure-js-commons";
 import accounts from "@/data/accounts.json";
 
-test.describe("Profile Tests", { tag: "@profile" }, () => {
+test.describe("Profile Page Tests", { tag: "@profile" }, () => {
   const { username, password, name } = accounts[1];
 
   test.beforeEach(async ({ loginPage, productPage }) => {

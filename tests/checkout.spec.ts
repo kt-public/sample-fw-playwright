@@ -3,7 +3,7 @@ import * as allure from "allure-js-commons";
 import accounts from "@/data/accounts.json";
 import receivers from "@/data/receivers.json";
 
-test.describe("Checkout Tests", { tag: "@checkout" }, () => {
+test.describe("Checkout Page Tests", { tag: "@checkout" }, () => {
   const { username, password } = accounts[1];
   const { name, phone, address } = receivers[0];
 
