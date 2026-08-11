@@ -2,6 +2,8 @@
 
 Project contains Playwright FW exercises
 
+- [Swagger UI](https://testing.platformforge.dev/api-docs)
+
 ## Get started
 
 1. Install dependencies
@@ -44,3 +46,7 @@ Project contains Playwright FW exercises
 3. Checkout with valid receiver information - [checkout.spec.ts](./tests/checkout.spec.ts)
 
 4. Update full name in profile - [profile.spec.ts](./tests/profile.spec.ts)
+
+
+
+
