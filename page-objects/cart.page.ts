@@ -26,7 +26,7 @@ export class CartPage extends BasePage {
   }
 
   async getSummaryTotalStr() {
-    return await this.summaryTotal.textContent();
+    return await this.getTextContent(this.summaryTotal);
   }
 
   async clickOnCheckoutBtn() {

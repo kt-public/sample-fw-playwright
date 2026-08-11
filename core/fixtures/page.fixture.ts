@@ -6,19 +6,20 @@ import { CartPage } from "@/page-objects/cart.page";
 import { CheckoutPage } from "@/page-objects/checkout.page";
 import { ProfilePage } from "@/page-objects/profile.page";
 
+import { RegisterApi } from "@/apis/register.api";
 import { LoginApi } from "@/apis/login.api";
 import { ProfileApi } from "@/apis/profile.api";
 import { CartApi } from "@/apis/cart.api";
 
 // Declare the types of your fixtures.
 type MyFixtures = {
-  basePage: BasePage;
   loginPage: LoginPage;
   productPage: ProductPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
   profilePage: ProfilePage;
 
+  registerApi: RegisterApi;
   loginApi: LoginApi;
   profileApi: ProfileApi;
   cartApi: CartApi;
@@ -26,13 +27,6 @@ type MyFixtures = {
 
 // This new "test" can be used in multiple test files, and each of them will get the fixtures.
 const test = base.extend<MyFixtures>({
-  basePage: async ({ page }, use) => {
-    // Set up the fixture.
-    const registerStudentPage = new BasePage(page);
-
-    // Use the fixture value in the test.
-    await use(registerStudentPage);
-  },
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
 
@@ -58,6 +52,10 @@ const test = base.extend<MyFixtures>({
     await use(profilePage);
   },
 
+  registerApi: async ({ request }, use) => {
+    const registerApi = new RegisterApi(request);
+    await use(registerApi);
+  },
   loginApi: async ({ request }, use) => {
     const loginApi = new LoginApi(request);
     await use(loginApi);

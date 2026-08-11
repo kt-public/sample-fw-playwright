@@ -37,8 +37,10 @@ Project contains Playwright FW exercises
 
 ## Test cases
 
-1. Add single product to cart - [cart.spec.ts](./tests/cart.spec.ts)
+1. Login fail - [login.spec.ts](./tests/login.spec.ts)
 
-2. Checkout with valid receiver information - [checkout.spec.ts](./tests/checkout.spec.ts)
+2. Add single product to cart - [cart.spec.ts](./tests/cart.spec.ts)
 
-3. Update full name in profile - [profile.spec.ts](./tests/profile.spec.ts)
+3. Checkout with valid receiver information - [checkout.spec.ts](./tests/checkout.spec.ts)
+
+4. Update full name in profile - [profile.spec.ts](./tests/profile.spec.ts)
